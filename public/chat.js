@@ -12,8 +12,12 @@ $(function(){
 	var feedback = $("#feedback")
 
 	//Emit message
-	send_message.click(function(){
-		socket.emit('new_message', {message : message.val()})
+	$('form').submit( function (e) {
+		e.preventDefault()
+		if(!$('#message').val()){
+			return false
+		}
+		socket.emit('new_message', {message : $('#message').val()})
 	})
 
 	//Listen on new_message

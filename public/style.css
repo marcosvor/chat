@@ -17,6 +17,8 @@ html {
 body {
     margin: 0px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -33,21 +35,23 @@ div#change_username, section#input_zone {
 }
 
 div#change_username {
-    height: 3%;
     display: inline-block;
     background-color: #81bef7;
 }
 
 section#chatroom {
     border: 5px inset #160bbd;
-    height: 85%;
     overflow: auto;
+    flex: 1 0 auto;
 }
 
 section#input_zone {
-    height: 7%;
     text-align: center;
     background-color: #81bef7;
+}
+
+form {
+    flex-shrink: 0;
 }
 
 .vertical-align {
@@ -68,6 +72,7 @@ input#message {
     height: 70%;
     font-family: 'Comfortaa', sans-serif;
     font-size: 2vh;
+    margin-top: 14px;
 }
 
 button#send_message {
