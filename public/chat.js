@@ -1,6 +1,6 @@
 
 $(function(){
-   	//make connection
+   	//fazer conexão
 	var socket = io.connect()
 
 	//buttons and inputs
@@ -11,7 +11,7 @@ $(function(){
 	var chatroom = $("#chatroom")
 	var feedback = $("#feedback")
 
-	//Emit message
+	//Emitir menssagem
 	$('form').submit( function (e) {
 		e.preventDefault()
 		if(!$('#message').val()){
@@ -20,24 +20,24 @@ $(function(){
 		socket.emit('new_message', {message : $('#message').val()})
 	})
 
-	//Listen on new_message
+	//Ouça new_message
 	socket.on("new_message", (data) => {
 		feedback.html('');
 		message.val('');
 		chatroom.append("<p class='message'>" + data.username + ": " + data.message + "</p>")
 	})
 
-	//Emit a username
+	//Emitir um username
 	send_username.click(function(){
 		socket.emit('change_username', {username : username.val()})
 	})
 
-	//Emit typing
+	//Emitir typing
 	message.bind("keypress", () => {
 		socket.emit('typing')
 	})
 
-	//Listen on typing
+	//Ouça typing
 	socket.on('typing', (data) => {
 		feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
 	})
